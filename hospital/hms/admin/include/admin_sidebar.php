@@ -2,7 +2,7 @@
 				<div class="sidebar-container perfect-scrollbar">
 
 <nav>
-						
+
 						<!-- start: MAIN NAVIGATION MENU -->
 						<div class="navbar-title">
 							<span>Main Navigation</span>
@@ -55,7 +55,7 @@
 											<span class="title">>View All Deleted Details</span>
 										</a>
 									</li>
-									
+
 								</ul>
 								</li>
 
@@ -72,12 +72,12 @@
 									</div>
 								</a>
 								<ul class="sub-menu">
-									
+
 									<li>
 										<a href="pharmacy/pending-pharmacies.php">
 											<span class="title">> Pending Registration</span>
 										</a>
-									</li>								
+									</li>
 									<li>
 										<a href="pharmacy/view-pharmacy.php">
 											<span class="title">> View All Pharmacy Details</span>
@@ -93,14 +93,14 @@
 											<span class="title">> View All Deleted Details </span>
 										</a>
 									</li>
-									
+
 								</ul>
 								</li>
 								<li>
 
 
 <a href="javascript:void(0)">
-									<div class="item-content">
+									<!-- <div class="item-content">
 										<div class="item-media">
 											<i class="ti-user"></i>
 										</div>
@@ -110,15 +110,15 @@
 									</div>
 								</a>
 								<ul class="sub-menu">
-									
+
 									<li>
 										<a href="manage-patient.php">
 											<span class="title"> Manage Users </span>
 										</a>
-									</li>
-									
+									</li> -->
+
 								</ul>
-								</li>	
+								</li>
 
 <!-- <li>
 								<a href="appointment-history.php">
@@ -147,7 +147,7 @@
 									</div>
 								</a>
 								<ul class="sub-menu">
-									
+
 									<li>
 										<a href="unread-queries.php">
 											<span class="title"> Unread Query </span>
@@ -159,7 +159,7 @@
 											<span class="title"> Read Query </span>
 										</a>
 									</li>
-									
+
 								</ul>
 		</li> -->
 
@@ -205,7 +205,7 @@
 									</div>
 								</a>
 								<ul class="sub-menu">
-									
+
 									<li>
 										<a href="between-dates-reports.php">
 											<span class="title">B/w dates reports </span>
@@ -227,7 +227,7 @@
 									</div>
 								</a>
 								<ul class="sub-menu">
-									
+
 									<li>
 										<a href="about-us.php">
 											<span class="title">About Us </span>
@@ -256,11 +256,11 @@
 									</div>
 								</a>
 	</li> -->
-							
+
 
 						</ul>
 						<!-- end: CORE FEATURES -->
-						
+
 					</nav>
 					</div>
 			</div>

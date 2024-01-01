@@ -22,13 +22,14 @@
 						<ul class="nav navbar-right">
 							<!-- start: MESSAGES DROPDOWN -->
 								<li  style="padding-top:2% ">
-								<h2>Dispensary & Pharmacy Management</h2>
-							</li>
+								<h2>Dispensary & Pharmacy Management</h2>assets/images/images.jpg
+							<!-- </li>
 						
 						
-							<li class="dropdown current-user">
+								<li class="dropdown current-user">
 								<a href class="dropdown-toggle" data-toggle="dropdown">
-									<img src="assets/images/images.jpg"> <span class="username">
+									<img src="assets/images/images.jpg"> 
+									<span class="username">
 
 
 
@@ -57,7 +58,7 @@ while($row=mysqli_fetch_array($query))
 										</a>
 									</li>
 								</ul>
-							</li>
+							</li> -->
 							<!-- end: USER OPTIONS DROPDOWN -->
 						</ul>
 						<!-- start: MENU TOGGLER FOR MOBILE DEVICES -->

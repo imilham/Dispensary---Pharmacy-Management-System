@@ -53,6 +53,24 @@ if(isset($_POST['submit']))
 	<body>
 		<div id="app">		
 <?php include('include/dispensary-sidebar.php');?>
+<?php 
+	$disId =  $_SESSION['id'];
+    // $ret=mysqli_query($con,"SELECT * FROM tbl_dispensary WHERE dispensary_id='$disId' ");
+    $ret=mysqli_query($con,"	select tbl_userlogins.* , tbl_dispensary.* from tbl_userlogins
+	INNER JOIN tbl_dispensary
+	on tbl_userlogins.user_id = tbl_dispensary.user_id
+	WHERE tbl_dispensary.user_id ='$disId' ");
+
+
+
+    $num=mysqli_fetch_array($ret);
+    if($num>0)
+    {
+    $disName = $num['dispensary_name'];
+    $status=1;
+	echo $disName;
+    }
+?>
 <div class="app-content">
 <?php include('include/header.php');?>
 <div class="main-content" >
@@ -61,11 +79,11 @@ if(isset($_POST['submit']))
 <section id="page-title">
 <div class="row">
 <div class="col-sm-8">
-<h1 class="mainTitle">Doctor | View Dispensary</h1>
+<h1 class="mainTitle"><?php echo $disName?>  | View Dispensary</h1>
 </div>
 <ol class="breadcrumb">
 <li>
-<span>Doctor</span>
+<span><?php echo $disName?> </span>
 </li>
 <li class="active">
 <span>View Dispensary</span>
@@ -84,7 +102,11 @@ if(isset($_POST['submit']))
 
 <?php
     $vid=$_GET['viewid'];
-    $ret=mysqli_query($con,"select * from tbl_dispensary where dispensary_id = '$vid'");
+    // $ret=mysqli_query($con,"select * from tbl_dispensary where dispensary_id = '$vid'");
+	$ret=mysqli_query($con,"	select tbl_userlogins.* , tbl_dispensary.* from tbl_userlogins
+	INNER JOIN tbl_dispensary
+	on tbl_userlogins.user_id = tbl_dispensary.user_id
+	WHERE tbl_dispensary.user_id ='$disId' ");
 	//"SELECT tbl_dispensary.dispensary_name, tbl_dispensary.dispensary_incharge, tbl_dispensary.status, tbl_dispensary.dispensary_brNum,tbl_dispensary.dispensary_location, tbl_dispensary.dispensary_reg, tbl_dispensary.dispensary_app, tbl_dispensary_contact.dispensary_contact, tbl_dispensary_contact.dispensary_email from tbl_dispensary inner join tbl_dispensary_contact on tbl_dispensary.dispensary_id = tbl_dispensary_contact.dispensary_id where tbl_dispensary.dispensary_id = '$vid'" );
     
 	$ret1=mysqli_query($con,"SELECT tbl_dispensary.dispensary_name, tbl_dispensary.dispensary_incharge, tbl_dispensary.status, tbl_dispensary.dispensary_brNum,tbl_dispensary.dispensary_location, tbl_dispensary.dispensary_reg, tbl_dispensary.dispensary_app, tbl_dispensary_contact.dispensary_contact, tbl_dispensary_contact.dispensary_email from tbl_dispensary inner join tbl_dispensary_contact on tbl_dispensary.dispensary_id = tbl_dispensary_contact.dispensary_id where tbl_dispensary.dispensary_id = '$vid'" );

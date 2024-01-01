@@ -6,9 +6,16 @@ include("include/connect.php");
 if(isset($_POST['submit']))
 {
 $uname=$_POST['username'];
-$upassword=$_POST['password'];
+// $upassword=$_POST['password'];
+$upassword=md5($_POST['password']);
 
-$ret=mysqli_query($con,"SELECT * FROM tbl_userlogins WHERE user_name='$uname' and user_password='$upassword' and user_type = 'Dispensary'");
+
+// $ret=mysqli_query($con,"SELECT * FROM tbl_userlogins WHERE user_name='$uname' and user_password='$upassword' and user_type = 'Dispensary'");
+$ret=mysqli_query($con,"SELECT tbl_userlogins.* , tbl_dispensary.* from tbl_userlogins
+INNER JOIN tbl_dispensary
+on tbl_userlogins.user_id = tbl_dispensary.user_id
+WHERE user_name='$uname' and user_password='$upassword' and user_type = 'Dispensary' and tbl_dispensary.status = 'Approved'");
+
 $num=mysqli_fetch_array($ret);
 if($num>0)
 {
@@ -19,7 +26,7 @@ header("location:dashboard.php");
 }
 else
 {
-$_SESSION['errmsg']="Invalid username or password";
+$_SESSION['errmsg']="Invalid Login Credentials or Account Deactivated";
 
 }
 }
@@ -75,20 +82,20 @@ $_SESSION['errmsg']="Invalid username or password";
 									 </span>
 							</div>
 							<div class="form-actions">
-								
+
 								<button type="submit" class="btn btn-primary pull-right" name="submit">
 									Login <i class="fa fa-arrow-circle-right"></i>
 								</button>
 							</div>
 							<a href="../../index.php">Back to Home Page</a>
-							
+
 						</fieldset>
 					</form>
 
 					<div class="copyright">
 						<span class="text-bold text-uppercase">Hospital Management System</span>
 					</div>
-			
+
 				</div>
 
 			</div>
@@ -100,7 +107,7 @@ $_SESSION['errmsg']="Invalid username or password";
 		<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 		<script src="vendor/switchery/switchery.min.js"></script>
 		<script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-	
+
 		<script src="assets/js/main.js"></script>
 
 		<script src="assets/js/login.js"></script>
@@ -110,7 +117,7 @@ $_SESSION['errmsg']="Invalid username or password";
 				Login.init();
 			});
 		</script>
-	
+
 	</body>
 	<!-- end: BODY -->
 </html>

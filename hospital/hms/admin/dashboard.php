@@ -86,7 +86,7 @@ $num_rows = mysqli_num_rows($result);
 										
 											<p class="cl-effect-1">
 												<a href="Pharmacy\pending-pharmacies.php">
-												<?php $result1 = mysqli_query($con,"SELECT * FROM tbl_dispensary ");
+												<?php $result1 = mysqli_query($con,"SELECT * FROM tbl_pharmacy where pharmacy_status = 'pending' or pharmacy_status = 'Pending'");
 $num_rows1 = mysqli_num_rows($result1);
 {
 ?>
@@ -97,7 +97,7 @@ $num_rows1 = mysqli_num_rows($result1);
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-4">
+								<!-- <div class="col-sm-4">
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
@@ -116,7 +116,7 @@ $num_rows2 = mysqli_num_rows($sql);
 											</p>
 										</div>
 									</div>
-								</div>
+								</div> -->
 
 <!-- <div class="col-sm-4">
 									<div class="panel panel-white no-radius text-center">

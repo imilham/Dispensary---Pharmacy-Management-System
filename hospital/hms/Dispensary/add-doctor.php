@@ -137,6 +137,26 @@ error:function (){}
 	<body>
 		<div id="app">		
 <?php include('include/dispensary-sidebar.php');?>
+
+
+<?php 
+	$disId =  $_SESSION['id'];
+    // $ret=mysqli_query($con,"SELECT * FROM tbl_dispensary WHERE dispensary_id='$disId' ");
+    $ret=mysqli_query($con,"	select tbl_userlogins.* , tbl_dispensary.* from tbl_userlogins
+	INNER JOIN tbl_dispensary
+	on tbl_userlogins.user_id = tbl_dispensary.user_id
+	WHERE tbl_dispensary.user_id ='$disId' ");
+
+
+
+    $num=mysqli_fetch_array($ret);
+    if($num>0)
+    {
+    $disName = $num['dispensary_name'];
+    $status=1;
+	echo $disName;
+    }
+?>
 			<div class="app-content">
 				
 						<?php include('include/header.php');?>
@@ -148,11 +168,11 @@ error:function (){}
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Dispensary | Add Doctor</h1>
+									<h1 class="mainTitle"><?php echo $disName?> | Add Doctor</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>
-										<span>Dispensary</span>
+										<span><?php echo $disName?></span>
 									</li>
 									<li class="active">
 										<span>Add Doctor</span>

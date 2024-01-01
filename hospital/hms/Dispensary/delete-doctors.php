@@ -38,7 +38,7 @@ if(isset($_GET['del']))
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Admin | Pending Dispensaries</title>
+		<title>Dispensary | Remove Doctors</title>
 
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -58,6 +58,25 @@ if(isset($_GET['del']))
 	<body>
 		<div id="app">
 <?php include('include/dispensary-sidebar.php');?>
+
+<?php 
+	$disId =  $_SESSION['id'];
+    // $ret=mysqli_query($con,"SELECT * FROM tbl_dispensary WHERE dispensary_id='$disId' ");
+    $ret=mysqli_query($con,"	select tbl_userlogins.* , tbl_dispensary.* from tbl_userlogins
+	INNER JOIN tbl_dispensary
+	on tbl_userlogins.user_id = tbl_dispensary.user_id
+	WHERE tbl_dispensary.user_id ='$disId' ");
+
+
+
+    $num=mysqli_fetch_array($ret);
+    if($num>0)
+    {
+    $disName = $num['dispensary_name'];
+    $status=1;
+	echo $disName;
+    }
+?>
 			<div class="app-content">
 
 						<?php include('include/header.php');?>
@@ -69,14 +88,14 @@ if(isset($_GET['del']))
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Admin | Pending Dispensaries</h1>
+									<h1 class="mainTitle"><?php echo $disName?> | Remove Doctors</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>
-										<span>Admin</span>
+										<span><?php echo $disName?></span>
 									</li>
 									<li class="active">
-										<span>Pending Dispensaries</span>
+										<span>Remove Doctors</span>
 									</li>
 								</ol>
 							</div>
@@ -91,7 +110,7 @@ if(isset($_GET['del']))
 										<div class="col-lg-6 col-md-12">
 											<div class="panel panel-white">
 												<div class="panel-heading">
-													<h5 class="panel-title">Pending Dispensaries</h5>
+													<h5 class="panel-title">Remove Doctors</h5>
 												</div>
 												<div class="panel-body">
 								<p style="color:red;"><?php echo htmlentities($_SESSION['msg']);?>

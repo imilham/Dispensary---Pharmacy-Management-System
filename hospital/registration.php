@@ -39,16 +39,18 @@ if(isset($_POST['submit']))
 		//header('Location: hms/dispensary/addData.php?id=' . urlencode($row['user_id']) . '&val=' . urlencode($brNum) . '&email=' . urlencode($email));
 		header('Location: hms/dispensary/addData.php?id=' . urlencode($row['user_id']) . '&val=' . urlencode($brNum) . '&email=' . urlencode($email));
 	
-	}
+		}
 		else if($userType == "Doctor")
 		{
 			header('Location: hms/doctor/addData.php?id=' . urlencode($row['user_id']) . '&email=' . urlencode($email));			
 		}
+		else if($userType == "Pharmacy"){
+			header('Location: hms/Pharmacy/addData.php?id=' . urlencode($row['user_id']) . '&val=' . urlencode($brNum) . '&email=' . urlencode($email));
+	
+		}
 		
 	}
-	else{
-		//echo "<script>alert('Username or Password already exists');</script>";
-	}
+	
 }
 ?>
 

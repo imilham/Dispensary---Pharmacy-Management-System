@@ -8,6 +8,8 @@ if(strlen($_SESSION['id']==0)) {
 
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -33,6 +35,24 @@ if(strlen($_SESSION['id']==0)) {
 	<body>
 		<div id="app">		
 <?php include('include/dispensary-sidebar.php');?>
+<?php 
+	$disId =  $_SESSION['id'];
+    // $ret=mysqli_query($con,"SELECT * FROM tbl_dispensary WHERE dispensary_id='$disId' ");
+    $ret=mysqli_query($con,"	select tbl_userlogins.* , tbl_dispensary.* from tbl_userlogins
+	INNER JOIN tbl_dispensary
+	on tbl_userlogins.user_id = tbl_dispensary.user_id
+	WHERE tbl_dispensary.user_id ='$disId' ");
+
+
+
+    $num=mysqli_fetch_array($ret);
+    if($num>0)
+    {
+    $disName = $num['dispensary_name'];
+    $status=1;
+	echo $disName;
+    }
+?>
 			<div class="app-content">
 				
 						<?php include('include/header.php');?>
@@ -44,11 +64,11 @@ if(strlen($_SESSION['id']==0)) {
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Dispensary | Dashboard</h1>
+									<h1 class="mainTitle"><?php echo $disName?> | Dashboard</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>
-										<span>Dispensary</span>
+										<span><?php echo $disName?></span>
 									</li>
 									<li class="active">
 										<span>Dashboard</span>
@@ -64,15 +84,27 @@ if(strlen($_SESSION['id']==0)) {
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">Make Treatments</h2>
+											<h2 class="StepTitle">New Patient</h2>
 											
 											<p class="links cl-effect-1">
-												<a href="dispensary/pending-dispensaries.php">
+												<a href="new-treatment.php">
 												<?php $result = mysqli_query($con,"SELECT * FROM tbl_dispensary where status = 'pending' or status = 'Pending'");
-$num_rows = mysqli_num_rows($result);
+												 $results = mysqli_query($con,"SELECT * FROM tbl_patient");
+												
+
+
+												 
+
+$num_row = mysqli_num_rows($result);
+$num_rows = mysqli_num_rows($results);
+
+
 {
+
 ?>
-											Pending Dispensaries :<?php echo htmlentities($num_rows);  } ?>		
+											<!-- Total Patients :<?php echo htmlentities($num_rows);  } ?>		 -->
+											Click Here
+
 												</a>
 											</p>
 										</div>
@@ -85,19 +117,22 @@ $num_rows = mysqli_num_rows($result);
 											<h2 class="StepTitle">Completed Treatments</h2>
 										
 											<p class="cl-effect-1">
-												<a href="manage-doctors.php">
+												<a href="manage-patient.php">
 												<?php $result1 = mysqli_query($con,"SELECT * FROM tbl_dispensary ");
 $num_rows1 = mysqli_num_rows($result1);
 {
+
+	$resultsss = mysqli_query($con,"SELECT * FROM tbl_patient WHERE dispensary = '$disName'");
+	$num_rowssss = mysqli_num_rows($resultsss);
 ?>
-											Total Pharmacies :<?php echo htmlentities($num_rows1);  } ?>		
-												</a>
+
+							Total Registered Patients :<?php echo htmlentities($num_rowssss);  } ?>														</a>
 												
 											</p>
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-4">
+								<!-- <div class="col-sm-4">
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
@@ -116,7 +151,7 @@ $num_rows2 = mysqli_num_rows($sql);
 											</p>
 										</div>
 									</div>
-								</div>
+								</div> -->
 
 
 
@@ -124,16 +159,16 @@ $num_rows2 = mysqli_num_rows($sql);
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="ti-files fa-1x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle"> View Patient Records</h2>
+											<h2 class="StepTitle"> View All Patient</h2>
 											
 											<p class="links cl-effect-1">
 												<a href="book-appointment.php">
-													<a href="unread-queries.php">
+													<a href="patient-search.php">
 												<?php 
-$sql= mysqli_query($con,"SELECT * FROM tbl_dispensary ");
+$sql= mysqli_query($con,"SELECT * FROM tbl_patient ");
 $num_rows22 = mysqli_num_rows($sql);
 ?>
-											Total New Queries :<?php echo htmlentities($num_rows22);   ?>	
+											Total Patients :<?php echo htmlentities($num_rows22);   ?>	
 												</a>
 												</a>
 											</p>

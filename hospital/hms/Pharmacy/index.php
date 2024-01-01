@@ -6,9 +6,25 @@ include("include/connect.php");
 if(isset($_POST['submit']))
 {
 $uname=$_POST['username'];
-$upassword=$_POST['password'];
+// $upassword=$_POST['password'];
+$upassword=md5($_POST['password']);
 
-$ret=mysqli_query($con,"SELECT * FROM tbl_userlogins WHERE user_name='$uname' and user_password='$upassword' and user_type = 'Dispensary'");
+
+// $ret=mysqli_query($con,"SELECT * FROM tbl_userlogins WHERE user_name='$uname' and user_password='' and user_type = 'Pharmacy'");
+
+$ret=mysqli_query($con,"SELECT tbl_userlogins.* , tbl_pharmacy.* from tbl_userlogins
+INNER JOIN tbl_pharmacy
+on tbl_userlogins.user_id = tbl_pharmacy.user_id
+WHERE user_name='$uname' and user_password='$upassword' and user_type = 'Pharmacy' and tbl_pharmacy.pharmacy_status = 'Approved'");
+
+
+
+
+
+
+
+// $ret=mysqli_query($con,"");
+
 $num=mysqli_fetch_array($ret);
 if($num>0)
 {
@@ -19,7 +35,7 @@ header("location:dashboard.php");
 }
 else
 {
-$_SESSION['errmsg']="Invalid username or password";
+$_SESSION['errmsg']="Invalid Login Credentials or Account Deactivated";
 
 }
 }
@@ -29,7 +45,7 @@ $_SESSION['errmsg']="Invalid username or password";
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Dispensary-Login</title>
+		<title>Pharmacy-Login</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
 		<meta name="apple-mobile-web-app-capable" content="yes">
@@ -51,14 +67,14 @@ $_SESSION['errmsg']="Invalid username or password";
 		<div class="row">
 			<div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
 				<div class="logo margin-top-30">
-				<h2>Dispensary Login</h2>
+				<h2>Pharmacy Login</h2>
 				</div>
 
 				<div class="box-login">
 					<form class="form-login" method="post">
 						<fieldset>
 							<legend>
-								Sign in to your dispensary account
+								Sign in to your Pharmacy account
 							</legend>
 							<p>
 								Please enter your name and password to log in.<br />

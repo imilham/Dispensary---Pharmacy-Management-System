@@ -82,7 +82,7 @@ $sql=mysqli_query($con,"select tbl_dipensary.* , tbl_userlogins.* from tbl_dispe
 
 //$sqltp=mysqli_query($con,"SELECT tbl_dispensary.dispensary_id, tbl_dispensary.dispensary_name, tbl_dispensary.dispensary_location, tbl_dispensary.dispensary_incharge, tbl_dispensary_contact.dispensary_contact,tbl_dispensary.status FROM ((tbl_dispensary INNER JOIN tbl_userlogins on tbl_dispensary.user_id = tbl_userlogins.user_id)INNER JOIN tbl_dispensary_contact on tbl_dispensary.dispensary_id = tbl_dispensary_contact.dispensary_id)where tbl_dispensary.status = 'approved' or tbl_dispensary.status = 'Approved'");
 
-$sqltp=mysqli_query($con,"SELECT pharmacy_name, pharmacy_tp, pharmacy_location, pharmacy_incharge, pharmacy_status FROM tbl_pharmacy where pharmacy_status = 'approved' or pharmacy_status = 'Approved'");
+$sqltp=mysqli_query($con,"SELECT pharmacy_id,pharmacy_name, pharmacy_tp, pharmacy_location, pharmacy_incharge, pharmacy_status FROM tbl_pharmacy where pharmacy_status = 'approved' or pharmacy_status = 'Approved'");
 
 
 
@@ -103,7 +103,7 @@ while($row=mysqli_fetch_array($sqltp))
 	</td>
 	<td>
 
-	<a href="view-dispensary_details.php?viewid=<?php echo $row['dispensary_id'];?>"><i class="fa fa-eye"></i></a>
+	<a href="view-pharmacy_details.php?viewid=<?php echo $row['pharmacy_id'];?>"><i class="fa fa-eye"></i></a>
 
 	</td>
 	</tr>

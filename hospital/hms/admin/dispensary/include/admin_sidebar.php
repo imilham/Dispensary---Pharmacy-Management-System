@@ -100,7 +100,7 @@
 
 
 <a href="javascript:void(0)">
-									<div class="item-content">
+									<!-- <div class="item-content">
 										<div class="item-media">
 											<i class="ti-user"></i>
 										</div>
@@ -115,10 +115,10 @@
 										<a href="manage-patient.php">
 											<span class="title"> Manage Users </span>
 										</a>
-									</li>
+									</li> -->
 									
 								</ul>
-								</li>	
+								</li>	 
 
 <!-- <li>
 								<a href="appointment-history.php">

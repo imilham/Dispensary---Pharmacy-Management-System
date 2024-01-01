@@ -59,7 +59,7 @@ echo "<script>window.location.href ='index.php'</script>";
                             <li><a href="#gallery">Gallery</a></li>
                             <li><a href="#contact_us">Contact Us</a></li>
                             <li><a href="#logins">Logins</a></li>
-                            <li><a href="#logins"></a>Appointments</li> 
+                            <!-- <li><a href="#logins"></a>Appointments</li>  -->
                              
 
 
