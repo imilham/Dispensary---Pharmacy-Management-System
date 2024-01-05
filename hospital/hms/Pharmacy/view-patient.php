@@ -51,7 +51,7 @@ if(isset($_POST['submit']))
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Doctor | Manage Patients</title>
+		<title>Pharmacy | Issue Medicine</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -70,7 +70,7 @@ if(isset($_POST['submit']))
 	</head>
 	<body>
 		<div id="app">		
-<?php include('include/dispensary-sidebar.php');?>
+<?php include('include/pharmacy-sidebar.php');?>
 <div class="app-content">
 <?php include('include/header.php');?>
 <div class="main-content" >
@@ -78,6 +78,7 @@ if(isset($_POST['submit']))
 						<!-- start: PAGE TITLE -->
 
             <?php 
+
 	$disId =  $_SESSION['id'];
     $ret=mysqli_query($con,"SELECT * FROM tbl_dispensary WHERE dispensary_id='$disId' ");
     $num=mysqli_fetch_array($ret);
@@ -86,6 +87,24 @@ if(isset($_POST['submit']))
     $disName = $num['dispensary_name'];
     $status=1;
 	// echo $disName;
+    }
+?>
+
+<?php 
+	$disId =  $_SESSION['id'];
+
+    // $ret=mysqli_query($con,"SELECT * FROM tbl_pharmacy WHERE pharmacy_id= '$disId' ");
+	$ret=mysqli_query($con,"select tbl_userlogins.* , tbl_pharmacy.* from tbl_userlogins
+	INNER JOIN tbl_pharmacy
+	on tbl_userlogins.user_id = tbl_pharmacy.user_id
+	WHERE tbl_pharmacy.user_id = '$disId' ");
+    $num=mysqli_fetch_array($ret);
+    if($num>0)
+    {
+    $disName = $num['pharmacy_name'];
+	
+    $status=1;
+	// echo "sssss";
     }
 ?>
 
@@ -100,7 +119,7 @@ if(isset($_POST['submit']))
 <span><?php echo $disName ?></span>
 </li>
 <li class="active">
-<span>Manage Patients</span>
+<span>Issue Medicine</span>
 </li>
 </ol>
 </div>
@@ -108,7 +127,7 @@ if(isset($_POST['submit']))
 <div class="container-fluid container-fullw bg-white">
 <div class="row">
 <div class="col-md-12">
-<h5 class="over-title margin-bottom-15">Manage <span class="text-bold">Patients</span></h5>
+<h5 class="over-title margin-bottom-15">Issue<span class="text-bold">Medicine</span></h5>
 <?php
                                $vid=$_GET['viewid'];
                                $ret=mysqli_query($con,"select * from tbl_patient where dispensary='$disName' && patient_id = '$vid'");
@@ -150,14 +169,14 @@ while ($row=mysqli_fetch_array($ret)) {
 </table>
 <?php  
 
-$ret=mysqli_query($con,"select * from tblmedicalhistory  where PatientID='$vid'");
+$ret=mysqli_query($con,"select * from tblmedicalhistory  where PatientID='$vid' && issue_status = 'Pending'");
 
 
 
  ?>
 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
   <tr align="center">
-   <th colspan="8" >Medical History</th> 
+   <th colspan="9" >Medical History</th> 
   </tr>
   <tr>
     <th>#</th>
@@ -168,6 +187,8 @@ $ret=mysqli_query($con,"select * from tblmedicalhistory  where PatientID='$vid'"
 <th>Medical Prescription</th>
 <th>Issued Dispensary | Visit Date</th>
 <th>Medicine issued</th>
+<th>Mark Issued</th>
+
 
 </tr>
 <?php  
@@ -181,32 +202,49 @@ while ($row=mysqli_fetch_array($ret)) {
   <td><?php  echo $row['Temperature'];?></td>
   <td><?php  echo $row['MedicalPres'];?></td>
 
-
-
-  <!-- <td>  <button class="" data-toggle="modal" data-target="#myModals">Add Medical History</button></p>  
-<a href="#myModals=<?php echo $row['ID'];?>"><i class="fa fa-eye"></i></a>    </td> -->
-
-<!-- 
-
-<td>
-    <button class="" data-toggle="modal" data-target="#myModals" onclick="setMedicalHistoryID(<?php echo $row['ID']; ?>)">Add Medical History</button>
-</td>
- -->
-
-
-
-
-
-
   <td> <?php echo $row['issued_dispensary'] ?> | <?php  echo $row['CreationDate'];?></td> 
   <td><?php  echo $row['issue_status'];?></td> 
+  
+  <td >
+	<div class="visible-md visible-lg hidden-sm hidden-xs">
+	<!-- <a href="edit-patient-prescription.php?id=<?php echo $row['ID'];?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit"><i class="fa fa-check">   Issued</i></a> -->
+  <a href="edit-patient-prescription.php?id=<?php echo $row['ID']; ?>&disName=<?php echo $disName; ?>" class="btn btn-transparent btn-xs" tooltip-placement="top" tooltip="Edit">
+    <i class="fa fa-check"> Issued</i>
+</a>
+																		
+
+</div>
+												<div class="visible-xs visible-sm hidden-md hidden-lg">
+													<div class="btn-group" dropdown is-open="status.isopen">
+														<button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
+															<i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
+														</button>
+														<ul class="dropdown-menu pull-right dropdown-light" role="menu">
+															<li>
+																<a href="#">
+																	Edit
+																</a>
+															</li>
+															<li>
+																<a href="#">
+																	Share
+																</a>
+															</li>
+															<li>
+																<a href="#">
+																	Remove
+																</a>
+															</li>
+														</ul>
+													</div>
+												</div></td>
 
 </tr>
 <?php $cnt=$cnt+1;} ?>
 </table>
 
 <p align="center">                            
- <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Add Medical History</button></p>  
+ <!-- <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Add Medical History</button></p>   -->
 
 <?php  ?>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -281,7 +319,7 @@ while ($row=mysqli_fetch_array($ret)) {
             </div>
             <div class="modal-body">
                 <form method="post" name="submit">
-                    <!-- Add a hidden input field to hold the value of $row['ID'] -->
+                    Add a hidden input field to hold the value of $row['ID'] -->
                     <!-- <input type="hidden" name="patientID" id="patientID" value="">
                     <table class="table table-bordered table-hover data-tables">
                         <tr>
@@ -300,7 +338,7 @@ while ($row=mysqli_fetch_array($ret)) {
             </div>
         </div>
     </div>
-</div> --> -->
+</div> --> 
 
 
 

@@ -20,7 +20,7 @@ $sql=mysqli_query($con,"update tbl_patient set patient_name='$patname',patient_c
 if($sql)
 {
 echo "<script>alert('Patient info updated Successfully');</script>";
-header('location:manage-patient.php');
+header('location:dashboard.php');
 
 }
 }

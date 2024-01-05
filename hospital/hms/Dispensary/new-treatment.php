@@ -69,7 +69,7 @@ $sql=mysqli_query($con,"insert into tbl_patient(patient_nic,patient_name,patient
 if($sql)
 {
 echo "<script>alert('Patient info added Successfully');</script>";
-header('location:new-treatment.php');
+header('location:dashboard.php');
 
 }
 // else{

@@ -10,7 +10,7 @@ if(strlen($_SESSION['id']==0)) {
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Doctor | Manage Patients</title>
+		<title>Pharmacy | View Prescriptions</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -29,23 +29,40 @@ if(strlen($_SESSION['id']==0)) {
 	</head>
 	<body>
 		<div id="app">		
-<?php include('include/dispensary-sidebar.php');?>
+<?php include('include/pharmacy-sidebar.php');?>
 <div class="app-content">
 <?php include('include/header.php');?>
 <div class="main-content" >
 <div class="wrap-content container" id="container">
+<?php 
+	$disId =  $_SESSION['id'];
+
+    // $ret=mysqli_query($con,"SELECT * FROM tbl_pharmacy WHERE pharmacy_id= '$disId' ");
+	$ret=mysqli_query($con,"select tbl_userlogins.* , tbl_pharmacy.* from tbl_userlogins
+	INNER JOIN tbl_pharmacy
+	on tbl_userlogins.user_id = tbl_pharmacy.user_id
+	WHERE tbl_pharmacy.user_id = '$disId' ");
+    $num=mysqli_fetch_array($ret);
+    if($num>0)
+    {
+    $disName = $num['pharmacy_name'];
+	
+    $status=1;
+	// echo "sssss";
+    }
+?>
 						<!-- start: PAGE TITLE -->
 <section id="page-title">
 <div class="row">
 <div class="col-sm-8">
-<h1 class="mainTitle">Doctor | Manage Patients</h1>
+<h1 class="mainTitle"><?php echo $disName ?> | View Prescription</h1>
 </div>
 <ol class="breadcrumb">
 <li>
-<span>Doctor</span>
+<span><?php echo $disName ?></span>
 </li>
 <li class="active">
-<span>Manage Patients</span>
+<span>View Prescription</span>
 </li>
 </ol>
 </div>
@@ -84,7 +101,7 @@ $sdata=$_POST['searchdata'];
 <th>Patient Gender </th>
 <th>Creation Date </th>
 <th>Updation Date </th>
-<th>Action</th>
+<th>View Prescription</th>
 </tr>
 </thead>
 <tbody>
@@ -107,7 +124,7 @@ while($row=mysqli_fetch_array($sql))
 </td>
 <td>
 
-<a href="edit-patient.php?editid=<?php echo $row['patient_id'];?>"><i class="fa fa-edit"></i></a> || <a href="view-patient.php?viewid=<?php echo $row['patient_id'];?>"><i class="fa fa-eye"></i></a>
+<a href="view-patient.php?viewid=<?php echo $row['patient_id'];?>"><i class="fa fa-eye"></i></a>
 
 </td>
 </tr>

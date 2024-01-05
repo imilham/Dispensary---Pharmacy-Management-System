@@ -188,7 +188,7 @@ $ret=mysqli_query($con,"select * from tblmedicalhistory  where PatientID='$vid'"
  ?>
 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
   <tr align="center">
-   <th colspan="8" >Medical History</th> 
+   <th colspan="9" >Medical History</th> 
   </tr>
   <tr>
     <th>#</th>
@@ -198,6 +198,7 @@ $ret=mysqli_query($con,"select * from tblmedicalhistory  where PatientID='$vid'"
 <th>Body Temprature</th>
 <th>Medical Prescription</th>
 <th>Presciption Issued Dispensary | Visit Date</th>
+<th>Medicine Issued Status</th>
 <th>Medicine issued</th>
 
 </tr>
@@ -211,6 +212,7 @@ while ($row=mysqli_fetch_array($ret)) {
  <td><?php  echo $row['BloodSugar'];?></td> 
   <td><?php  echo $row['Temperature'];?></td>
   <td><?php  echo $row['MedicalPres'];?></td>
+  
 
 
 
@@ -230,7 +232,9 @@ while ($row=mysqli_fetch_array($ret)) {
 
 
   <td> <?php echo $row['issued_dispensary'] ?> | <?php  echo $row['CreationDate'];?></td> 
-  <td><?php  echo $row['issue_status'];?></td> 
+  <td><?php  echo $row['issue_status'];?></td>
+  <td><?php  echo $row['issued_pharmacy'];?></td>
+
 
 </tr>
 <?php $cnt=$cnt+1;} ?>
@@ -312,7 +316,7 @@ while ($row=mysqli_fetch_array($ret)) {
             </div>
             <div class="modal-body">
                 <form method="post" name="submit">
-                    <!-- Add a hidden input field to hold the value of $row['ID'] -->
+                    Add a hidden input field to hold the value of $row['ID'] -->
                     <!-- <input type="hidden" name="patientID" id="patientID" value="">
                     <table class="table table-bordered table-hover data-tables">
                         <tr>
@@ -331,7 +335,7 @@ while ($row=mysqli_fetch_array($ret)) {
             </div>
         </div>
     </div>
-</div> --> -->
+</div> -->
 
 
 

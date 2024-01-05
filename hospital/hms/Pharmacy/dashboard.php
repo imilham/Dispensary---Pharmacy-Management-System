@@ -83,10 +83,10 @@ if(strlen($_SESSION['id']==0)) {
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">New Patient</h2>
+											<h2 class="StepTitle">View Prescription</h2>
 											
 											<p class="links cl-effect-1">
-												<a href="new-treatment.php">
+												<a href="patient-search.php">
 												<?php $result = mysqli_query($con,"SELECT * FROM tbl_dispensary where status = 'pending' or status = 'Pending'");
 												 $results = mysqli_query($con,"SELECT * FROM tbl_patient");
 												 $resultsss = mysqli_query($con,"SELECT * FROM tbl_patient WHERE dispensary = '$disName'");
@@ -110,7 +110,7 @@ $num_rowssss = mysqli_num_rows($resultsss);
 										</div>
 									</div>
 								</div>
-<div class="col-sm-4">
+<!-- <div class="col-sm-4">
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-users fa-stack-1x fa-inverse"></i> </span>
@@ -128,7 +128,7 @@ $num_rows1 = mysqli_num_rows($result1);
 											</p>
 										</div>
 									</div>
-								</div>
+								</div> -->
 								<!-- <div class="col-sm-4">
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
@@ -152,7 +152,7 @@ $num_rows2 = mysqli_num_rows($sql);
 
 
 
-<div class="col-sm-4">
+<!-- <div class="col-sm-4">
 									<div class="panel panel-white no-radius text-center">
 										<div class="panel-body">
 											<span class="fa-stack fa-2x"> <i class="ti-files fa-1x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
@@ -171,7 +171,7 @@ $num_rows22 = mysqli_num_rows($sql);
 											</p>
 										</div>
 									</div>
-								</div>
+								</div> -->
 
 
 
