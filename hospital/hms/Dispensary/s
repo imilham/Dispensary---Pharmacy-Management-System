@@ -1,0 +1,34 @@
+create table employeeStar (emp_id int primary key, salary int, star VARCHAR2 (100));
+-- Insert statement 1
+INSERT INTO employeeStar (emp_id, salary)
+VALUES (104, 6000);
+-- Insert statement 2
+INSERT INTO employeeStar (emp_id, salary)
+VALUES (176, 11000);
+-- Insert statement 3
+INSERT INTO employeeStar (emp_id, salary)
+VALUES (200, 8600);
+
+DECLARE
+      CURSOR employee_cursor IS
+    	SELECT emp_id, salary
+    	FROM employeeStar
+    	FOR UPDATE OF star;
+      v_emp_id employeeStar.emp_id%TYPE;
+      v_salary employeeStar.salary%TYPE;
+      v_stars VARCHAR2(100);
+BEGIN
+  OPEN employee_cursor;
+  
+  LOOP
+    FETCH employee_cursor INTO v_emp_id, v_salary;
+    EXIT WHEN employee_cursor%NOTFOUND;
+
+    -- Calculate the number of asterisks based on salary (1 asterisk for every Rs.1000)
+    IF v_salary < 1000 THEN
+        v_stars := 'Salary should be above 1000 to get star';
+    ELSE
+        v_stars := RPAD('*', v_salary / 1000, '*');
+    END IF;
+
+    

@@ -82,10 +82,7 @@ if(isset($_POST['submit']))
 
 		
 	<script type="text/javascript">
-
 	
-		
-		
 		function valid()
 		{
 			if(document.registration.password.value != document.registration.password_again.value)
@@ -93,11 +90,6 @@ if(isset($_POST['submit']))
 			//alert("Password and Confirm Password Field do not match  !!");
 			document.getElementById("user-availability-status4").style.color = "red";	
 			document.getElementById("user-availability-status4").textContent = "Password Not Matching";
-
-
-
-
-
 
 			document.registration.password_again.focus();
 			return false;
@@ -146,7 +138,6 @@ if(isset($_POST['submit']))
 				<!-- start: REGISTER BOX -->
 				<div class="box-register">
 					<form name="registration" id="registration"  method="post" onSubmit="return valid();">
-						<fieldset>
 							<legend>
 								Sign Up
 							</legend>
@@ -154,22 +145,14 @@ if(isset($_POST['submit']))
 							<p>
 								Enter your account details below:
 							</p>
-							<div class="form-group">
-								<span class="input-icon">
+
 									<input type="email" class="form-control" name="email" id="email" onBlur="userAvailability()"  placeholder="Email" required>
 									<i class="fa fa-envelope"></i> </span>
-									 <span id="user-availability-status1" style="font-size:12px;"></span>
-							</div>
 
-							<div class="form-group">
-								<span class="input-icon">
 									<input type="text" class="form-control" name="userName" id="userName" onBlur="userNameAvailability()"  placeholder="Username" required>
 									<i class="fa fa-user"></i> </span>
-									 <span id="user-availability-status2" style="font-size:12px;"></span>
-							</div>
 
 
-							<div class="form-group">
 								<label class="block">
 									Slect Your User Account Type
 								</label>
@@ -306,7 +289,6 @@ if(isset($_POST['submit']))
 	</script>	
 
 	<script>
-
 		function userNameAvailability() 
 		{
 			$("#loaderIcon").show();
@@ -322,15 +304,10 @@ if(isset($_POST['submit']))
 				error:function (){}
 			});
 		}
-
-
-
-
 	</script>
 
 
 	<script>
-	//Dispensay br number validation
 	function brNumAvailability() 
 	{
 		$("#loaderIcon").show();
@@ -347,13 +324,6 @@ if(isset($_POST['submit']))
 		});
 	}
 
-
-
-
-
-
-
-	//text box enable and disable for the br number field
 	//dispensary enabling
 	function disEnableTextField() {
 	document.getElementById("brNum").disabled = false;
@@ -372,7 +342,6 @@ if(isset($_POST['submit']))
 	}
 
 
-	
 	//disable br number for doctor
 	function disableTextField() {
 	//document.getElementById("brNum").disabled = true;

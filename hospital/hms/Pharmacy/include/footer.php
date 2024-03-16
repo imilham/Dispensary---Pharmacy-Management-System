@@ -5,7 +5,7 @@
 					</div>
 
 					<div class="pull-right">
-					<span class="text-bold text-uppercase">Developed with ❤️ by DCSD Students</span>
+					<span class="text-bold text-uppercase">Developed with ❤️ by Mohamed Ilham</span>
 					</div>
 
 					<!-- <div class="pull-right">

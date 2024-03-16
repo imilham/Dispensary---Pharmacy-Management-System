@@ -19,7 +19,7 @@ header("location:dashboard.php");
 }
 else
 {
-$_SESSION['errmsg']="Invalid username or password";
+// $_SESSION['errmsg']="Invalid username or password";
 
 }
 }

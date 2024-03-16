@@ -84,10 +84,6 @@ $sql=mysqli_query($con,"select tbl_dipensary.* , tbl_userlogins.* from tbl_dispe
 
 $sqltp=mysqli_query($con,"SELECT * FROM tbl_dispensary where status = 'approved' or status = 'Approved'");
 
-
-
-
-
 $cnt=1;
 while($row=mysqli_fetch_array($sqltp))
 {
