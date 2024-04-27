@@ -43,6 +43,9 @@ The project is organized into the following folders:
    - *Admin*: Username - admin, Password - admin_password
    - *Dispensary*: Username - dispensary, Password - dispensary_password
    - *Pharmacy*: Username - pharmacy, Password - pharmacy_password
+
+    for the login credentials go through the databse tbl_userlogins
+
 3. Navigate through the dashboard and use the respective functionalities based on your role.
 
 ## Contributing
