@@ -289,6 +289,8 @@ if(isset($_POST['submit']))
 	</script>	
 
 	<script>
+
+
 		function userNameAvailability() 
 		{
 			$("#loaderIcon").show();
